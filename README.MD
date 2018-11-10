@@ -23,12 +23,15 @@ train["target"].value_counts()
  Name: target, dtype: int64
 ```
 - 正负列比约为`1：15`，故采用`F1 score`
-F1 score = \frac{2*(P*RP)}{P+R}
+
+
+> $F1-score = \frac{2*(P*RP)}{P+R}$,其中P和R分别为 precision 和 recall
+
+
 ```python
 precision = TP / (TP + FP)
 recall = TP / (TP + FN)
 accuracy = (TP + TN) / (TP + FP + TN + FN)
-F1 Score = 2*P*R/(P+R)，其中P和R分别为 precision 和 recall
 ```
 
 
@@ -39,10 +42,10 @@ F1 Score = 2*P*R/(P+R)，其中P和R分别为 precision 和 recall
 - 观察正负例数量
 - 空缺值
 - 拆分训练集、验证集
-- 使用不同的embeddings(glove,word2vec,自己训练)训练后，进行融合
-    - Keras embedding层类似word2vec，将输入的二维(用字典id表示的句子)转化为三维张量(即将id训练成vec)
+- 使用不同的`embeddings`(glove,word2vec,自己训练)训练后，进行融合
+    - `Keras-embedding`层类似word2vec，将输入的二维(用字典id表示的句子)转化为三维张量(即将id训练成vec)
 - f1score评价
 
 - LSTM + CNN + attention
 
-- tokenizer用来将query转化为序列(先遍历得到字典，然后按频率排序得到id)
+- `tokenizer`用来将query转化为序列(先遍历得到字典，然后按频率排序得到id)
