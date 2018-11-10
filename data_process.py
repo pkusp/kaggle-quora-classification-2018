@@ -1,7 +1,10 @@
 
 import time
 import numpy as np 
-import pandas as pd 
+import pandas as pd
+from config import input_path
+
+
 t_start = time.time()
 
 import os
@@ -59,7 +62,6 @@ val_y = np.array(val_df["target"][:3000])
 #             texts = train_df.iloc[i*batch_size:(i+1)*batch_size, 1]
 #             text_arr = np.array([text_to_array(text) for text in texts])  # [query转化为三维张量]
 #             yield text_arr, np.array( train_df["target"][i*batch_size:(i+1)*batch_size] )  # 每次yield一个batch的train和对应的label
-
 
 # # prediction par
 # batch_size = 256
