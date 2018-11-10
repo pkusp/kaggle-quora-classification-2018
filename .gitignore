@@ -1,3 +1,5 @@
 *.idea
 */data_raw
 data_raw/*
+*.xml
+idea/*
