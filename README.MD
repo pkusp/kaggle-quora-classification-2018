@@ -14,7 +14,11 @@ print(os.listdir("../input/embeddings/glove.840B.300d/"))
 train = pd.read_csv("../input/train.csv")
 test = pd.read_csv("../input/test.csv")
 sub = pd.read_csv('../input/sample_submission.csv')
-
+--
+Train shape :  (1306122, 3)
+Test shape :  (56370, 2)
+--
+train columns = Index(['qid', 'question_text', 'target'], dtype='object')
 train["target"].value_counts()
 ```
 ```python
@@ -38,6 +42,46 @@ accuracy = (TP + TN) / (TP + FP + TN + FN)
 
 ### 以上持续更新...
 
+## 一些优秀的kernel
+- [LSTM is all you need](https://www.kaggle.com/mihaskalic/lstm-is-all-you-need-well-maybe-embeddings-also)
+- [a look at different embeddings](https://www.kaggle.com/sudalairajkumar/a-look-at-different-embeddings)
+- [How to preprocessing when use embeddings](https://www.kaggle.com/christofhenkel/how-to-preprocessing-when-using-embeddings)
+
+
+
+## 一些操作技巧整理
+
+- KeyeVectors读取预训练的词向量
+
+```python
+import gensim
+from gensim.models import KeyedVectors
+
+word2vec_model_path = './data/data_vec.txt' ##词向量文件的位置
+word2vec_model = KeyedVectors.load_word2vec_format(word2vec_model_path, binary=False,unicode_errors='ignore')
+word2vec_dict = {}
+for word, vector in zip(word2vec_model.vocab, word2vec_model.vectors):
+    if '.bin' not in word2vec_model_path:
+        word2vec_dict[word] = vector
+    else:
+        word2vec_dict[word] = vector /np.linalg.norm(vector) 
+for each in word2vec_dict:
+    print (each,word2vec_dict[each])
+--------------------- 
+原文：https://blog.csdn.net/yangfengling1023/article/details/81705109 
+```
+- use tqdm to see progress bar
+```python
+import tqdm
+```
+- split句子的简洁方法
+```python
+sentences = train["question_text"].progress_apply(lambda x: x.split()).values
+
+```
+
+
+
 ## 记录
 - 观察正负例数量
 - 空缺值
@@ -49,3 +93,7 @@ accuracy = (TP + TN) / (TP + FP + TN + FN)
 - LSTM + CNN + attention
 
 - `tokenizer`用来将query转化为序列(先遍历得到字典，然后按频率排序得到id)
+
+- Don't use standard preprocessing steps like stemming or stopword removal when you have pre-trained embeddings
+
+- Get your vocabulary as close to the embeddings as possible
