@@ -1,4 +1,4 @@
-> 说明：本项目为`kaggle`比赛内容，开始时间2018.11.09
+> 说明：本项目为`kaggle`比赛内容，开始时间`2018.11.09`
 
 # ***kaggle - Quora insincere classification***
 - 比赛链接:[Quora Insincere Classification](https://www.kaggle.com/c/quora-insincere-questions-classification)
@@ -14,17 +14,22 @@ print(os.listdir("../input/embeddings/glove.840B.300d/"))
 train = pd.read_csv("../input/train.csv")
 test = pd.read_csv("../input/test.csv")
 sub = pd.read_csv('../input/sample_submission.csv')
+<!-- 
 --
 Train shape :  (1306122, 3)
 Test shape :  (56370, 2)
 --
+ -->
 train columns = Index(['qid', 'question_text', 'target'], dtype='object')
 train["target"].value_counts()
 ```
 ```python
+<!-- 
  0    1225312
  1      80810
- Name: target, dtype: int64
+ Name
+ -->
+<!-- : target, dtype: int64 -->
 ```
 - 正负列比约为`1：15`，故采用`F1 score`
 
@@ -103,7 +108,7 @@ f() # == 11
 
 ## ***Kernel Baseline Boosting*** 
 
-- [How to preprocessing when use embeddings](https://www.kaggle.com/christofhenkel/how-to-preprocessing-when-using-embeddings)
+- [How to preprocessing when using embeddings](https://www.kaggle.com/christofhenkel/how-to-preprocessing-when-using-embeddings)
 ```python
 import pandas as pd
 from tqdm import tqdm
