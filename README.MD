@@ -163,13 +163,14 @@ def check_coverage(vocab,embeddings_index):
     sorted_x = sorted(oov.items(), key=operator.itemgetter(1))[::-1]
 
     return sorted_x
+    
 # 预训练的embeddings覆盖率太低，很多训练集中的词没有embedding！
 oov = check_coverage(vocab,embeddings_index)
 
 # 看看top10 out of vocab的词是哪些：
 oov[:10]
 # On first place there is "to". Why? Simply because "to" was removed when the GoogleNews Embeddings were trained. 
-‘’‘
+'''
 [('to', 403183),
  ('a', 402682),
  ('of', 330825),
@@ -180,12 +181,14 @@ oov[:10]
  ('life?', 7753),
  ('you?', 6295),
  ('me?', 6202)]
- ’‘’
+ '''
+ 
 # for now we take care about the splitting of punctuation as this also seems to be a Problem.
 # But what do we do with the punctuation then - Do we want to delete or consider as a token?
 # I would say: It depends. If the token has an embedding, keep it, if it doesn't we don't need it anymore. So lets check:
 '?' in embeddings_index  # false
 '&' in embeddings_index # true
+
 # Interesting. While "&" is in the Google News Embeddings, "?" is not.
 # So we basically define a function that splits off "&" and removes other punctuation.
 def clean_text(x):
@@ -197,10 +200,12 @@ def clean_text(x):
     for punct in '?!.,"#$%\'()*+-/:;<=>@[\\]^_`{|}~' + '“”’':
         x = x.replace(punct, '')
     return x
+    
 # 在读取训练集query时加入clean_text()，以去除标点
 train["question_text"] = train["question_text"].progress_apply(lambda x: clean_text(x))
 sentences = train["question_text"].apply(lambda x: x.split())
 vocab = build_vocab(sentences)
+
 # 去除标点后检查训练集与embeddings的重合率：由24% 78% -> 57% 90%
 oov = check_coverage(vocab,embeddings_index)
 
@@ -246,19 +251,23 @@ def clean_numbers(x):
     x = re.sub('[0-9]{3}', '###', x)
     x = re.sub('[0-9]{2}', '##', x)
     return x
+    
 # 在读取训练集时同时clean_number()
 train["question_text"] = train["question_text"].progress_apply(lambda x: clean_numbers(x))
 sentences = train["question_text"].progress_apply(lambda x: x.split())
 vocab = build_vocab(sentences)
+
 # 再次的，看看处理后的embeddings和训练集的交集：57% 90% -> 60% 90%
 oov = check_coverage(vocab,embeddings_index)
+
 # 继续看看top20漏掉的词
 oov[:20]
+
 # Ok now we take care of common misspellings when using american/british vocab and replacing a few "modern" words with "social media" for this task
 # I use a multi regex script I found some time ago on stack overflow. 
 # Additionally we will simply remove the words "a","to","and" and "of" since those have obviously been downsampled when training the GoogleNews Embeddings. 
 
-‘’‘
+'''
 [('to', 406298),
  ('a', 403852),
  ('of', 332964),
@@ -279,13 +288,14 @@ oov[:20]
  ('cryptocurrencies', 481),
  ('blockchain', 474),
  ('behaviour', 468)]
- ’‘’
+ '''
  
 # 从上面可知，标点相关的通用问题解决差不多了，现在开始处理拼写的问题
 # 将字典编译成正则表达式
 def _get_mispell(mispell_dict):
     mispell_re = re.compile('(%s)' % '|'.join(mispell_dict.keys()))
     return mispell_dict, mispell_re
+    
 # 手写常见的拼写错误
 mispell_dict = {'colour':'color',
                 'centre':'center',
@@ -315,6 +325,7 @@ def replace_typical_misspell(text):
         return mispellings[match.group(0)]
 
     return mispellings_re.sub(replace, text)
+    
 # 再次的，将replace_typical_misspell()加入到训练集的读取过程，使拼写更加标准化，并去除一些embeddings漏掉的top几的词
 train["question_text"] = train["question_text"].progress_apply(lambda x: replace_typical_misspell(x))
 sentences = train["question_text"].progress_apply(lambda x: x.split())
@@ -324,9 +335,10 @@ vocab = build_vocab(sentences)
 
 # 再次检查embeddings和训练集的交集：60% 90% -> 60% 99% 分别为（字典遗漏和总词数遗漏）
 oov = check_coverage(vocab,embeddings_index)
+
 # 最后检查遗漏的top20，都是新词，没问题了
 oov[:20]
-’‘’
+'''
 [('bitcoin', 987),
  ('Quorans', 858),
  ('cryptocurrency', 822),
@@ -347,7 +359,7 @@ oov[:20]
  ('mtech', 281),
  ('Btech', 262),
  ('bitcoins', 254)]
- ‘’‘
+ '''
 
 ```
 - [LSTM is all you need](https://www.kaggle.com/mihaskalic/lstm-is-all-you-need-well-maybe-embeddings-also)
