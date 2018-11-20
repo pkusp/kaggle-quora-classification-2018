@@ -4,6 +4,13 @@
 - 比赛链接:[Quora Insincere Classification](https://www.kaggle.com/c/quora-insincere-questions-classification)
 - 比赛形式: *kernel only*
 
+## 目录说明
+> 更新中...
+[`main_process.py`](.main_process.py) 为数据预处理，返回 `train`和`test`清洗后的数据
+[`bi-lstm_basline.py`](.bi-lstm_baseline.py)为基线模型
+
+
+
 
 ## EDA
 
