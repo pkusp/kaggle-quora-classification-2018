@@ -54,16 +54,16 @@ def test_batch_gen(test_df,batch_size = 256):
         yield text_arr
 
 
-def model_gen():
-    model = Sequential()
-    model.add(Bidirectional(CuDNNLSTM(64, return_sequences=True),
-                            input_shape=(30, 300)))
-    model.add(Bidirectional(CuDNNLSTM(64)))
-    model.add(Dense(1, activation="sigmoid"))
-    model.compile(loss='binary_crossentropy',
-                  optimizer='adam',
-                  metrics=['accuracy'])
-    return model
+# def model_gen():
+#     model = Sequential()
+#     model.add(Bidirectional(CuDNNLSTM(64, return_sequences=True),
+#                             input_shape=(30, 300)))
+#     model.add(Bidirectional(CuDNNLSTM(64)))
+#     model.add(Dense(1, activation="sigmoid"))
+#     model.compile(loss='binary_crossentropy',
+#                   optimizer='adam',
+#                   metrics=['accuracy'])
+#     return model
 
 
 train_df, val_df = train_test_split(train_df, test_size=0.1)
@@ -86,7 +86,15 @@ val_vects = np.array([text_to_array(X_text) for X_text in tqdm(val_df["question_
 val_y = np.array(val_df["target"][:3000])
 
 
-model = model_gen()
+# model = model_gen()
+model = Sequential()
+model.add(Bidirectional(CuDNNLSTM(64, return_sequences=True),
+                        input_shape=(30, 300)))
+model.add(Bidirectional(CuDNNLSTM(64)))
+model.add(Dense(1, activation="sigmoid"))
+model.compile(loss='binary_crossentropy',
+              optimizer='adam',
+              metrics=['accuracy'])
 # model fit
 mg = train_batch_gen(train_df)
 model.fit_generator(mg, epochs=20,
