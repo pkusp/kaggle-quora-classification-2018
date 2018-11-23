@@ -5,8 +5,7 @@ import numpy as np
 import pandas as pd
 from keras.models import Sequential
 from keras.layers import CuDNNLSTM, Dense, Bidirectional
-from data_process import train_batch_gen,test_batch_gen,train_df,test_df,val_vects,val_y
-from data_process import DataProcess
+
 t_start=time.time()
 
 

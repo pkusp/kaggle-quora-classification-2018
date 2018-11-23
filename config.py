@@ -9,7 +9,15 @@
 
 这一行开始写关于本文件的说明与解释
 """
+import os
+
+config_path = os.path.abspath(__file__)
+
+project_root = os.path.dirname(config_path)
+
 glove_embd_path= "../"
 
-input_path= "../input"
+print("root:\n",config_path)
+print("root:\n",project_root)
+print("hello")
 

@@ -21,6 +21,7 @@ from tqdm import tqdm
 import math
 from sklearn.model_selection import train_test_split
 
+print(os.listdir("/input")) # kernel only比赛，数据存储路径
 
 train_df = pd.read_csv("../input/train.csv")
 test_df = pd.read_csv("../input/test.csv")

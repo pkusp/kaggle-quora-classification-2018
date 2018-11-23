@@ -3,3 +3,7 @@
 data_raw/*
 *.xml
 idea/*
+*.zip
+*.csv
+*.txt
+.DS_Store
