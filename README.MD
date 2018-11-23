@@ -114,7 +114,7 @@ f() # == 11
 
 ## ***Kernel Baseline Boosting*** 
 
-- [How to preprocessing when using embeddings](https://www.kaggle.com/christofhenkel/how-to-preprocessing-when-using-embeddings)
+### [How to: preprocessing when using embeddings](https://www.kaggle.com/christofhenkel/how-to-preprocessing-when-using-embeddings)
 ```python
 import pandas as pd
 from tqdm import tqdm
@@ -373,7 +373,7 @@ oov[:20]
  '''
 
 ```
-- [LSTM is all you need](https://www.kaggle.com/mihaskalic/lstm-is-all-you-need-well-maybe-embeddings-also)
+### [LSTM is all you need](https://www.kaggle.com/mihaskalic/lstm-is-all-you-need-well-maybe-embeddings-also)
 ```python
 # bi-LSTM baseline
 # encoding: utf-8
@@ -505,12 +505,12 @@ submit_df = pd.DataFrame({"qid": test_df["qid"], "prediction": y_te})
 submit_df.to_csv("submission.csv", index=False)
 
 ```
-- [A look at different embeddings](https://www.kaggle.com/sudalairajkumar/a-look-at-different-embeddings)
+### [A look at different embeddings](https://www.kaggle.com/sudalairajkumar/a-look-at-different-embeddings)
 ```python
 # try different embeddings
 ```
 
-- [Attention baseline]()
+### [Attention baseline]()
 ```python
 attention
 ```
