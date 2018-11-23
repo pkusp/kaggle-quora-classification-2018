@@ -4,8 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 import operator 
 from gensim.models import KeyedVectors
-import re
-
+import re,time
 tqdm.pandas()
 # read data
 train_df = pd.read_csv("../input/train.csv")
@@ -169,6 +168,9 @@ def pre_process(train):
     return train
 
 
+t1 = time.time()
 train_clean = pre_process(train_df)
 test_clean = pre_process(test_df)
 
+t2 = time.time()
+print("run{}s".format(t2-t1))
