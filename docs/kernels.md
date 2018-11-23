@@ -395,7 +395,8 @@ submit_df.to_csv("submission.csv", index=False)
 # try different embeddings
 ```
 
-### 四、[Attention baseline]()
+### 四、[LSTM Attention baseline](https://www.kaggle.com/suicaokhoailang/lstm-attention-baseline-0-652-lb)
+引用的[Attention](https://www.kaggle.com/qqgeogor/keras-lstm-attention-glove840b-lb-0-043)
 ```python
 attention
 ```

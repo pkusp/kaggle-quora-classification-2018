@@ -24,13 +24,24 @@
 ## 一些操作技巧梳理
 
 - 操作技巧梳理：[*tricks*](./docs/trick.md)
-
+- 笔记：[keras学习笔记](.https://www.cnblogs.com/limitlessun/p/9296614.html#_label3)
 
 
 ## ***Kernel Baseline Boosting*** 
 
 - 优秀的kernel梳理：[*kernels*](./docs/kernels.md)
+    - [Pre-processing when using embeddings](./docs/kernels.md/### 一)
+    - LSTM is all you need
+    - LSTM+Attention
+    - Different embeddings with attention
+    - LSTM + CNN
+    - [LSTM Attention](.https://www.kaggle.com/qqgeogor/keras-lstm-attention-glove840b-lb-0-043)
 
+## *submission*情况
+- LSTM baseline no tune: 0.573
+- Pre-processing + LSTM Baseline no tune: 0.631
+-
+-
 
 
 ## 记录
