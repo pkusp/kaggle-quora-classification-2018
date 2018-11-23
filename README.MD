@@ -6,90 +6,30 @@
 
 ## 目录说明
 > 更新中...
-- [input](./input)为输入数据
-- [working/main_process.py](./main_process.py) 为数据预处理，返回 `train`和`test`清洗后的数据
-- [working/bi-lstm_basline.py](./bi-lstm_baseline.py)为基线模型
+- [*input*](./input)为输入数据
+- [*working/main_process.py*](./main_process.py) 为数据预处理，返回 `train`和`test`清洗后的数据
+- [*working/bi-lstm_basline.py*](./bi-lstm_baseline.py)为基线模型
 
 -
 -
 -
 -
-
 
 
 ## EDA
-
-```python
-import os
-print(os.listdir("../input/embeddings/glove.840B.300d/"))
-
-# read dataset
-train = pd.read_csv("../input/train.csv")
-test = pd.read_csv("../input/test.csv")
-sub = pd.read_csv('../input/sample_submission.csv')
-
-#Train shape :  (1306122, 3)
-#Test shape :  (56370, 2)
-
-train columns = Index(['qid', 'question_text', 'target'], dtype='object')
-train["target"].value_counts()
- 0    1225312
- 1      80810
-
-```
-- 正负列比约为`1：15`，故采用`F1 score`
+- 数据探测：[*EDA*](./docs/eda.md)
 
 
-> $F1-score = \frac{2*(P*RP)}{P+R}$,其中P和R分别为 precision 和 recall
+
+## 一些操作技巧梳理
+
+- 操作技巧梳理：[*tricks*](./docs/trick.md)
 
 
-```python
-precision = TP / (TP + FP)
-recall = TP / (TP + FN)
-accuracy = (TP + TN) / (TP + FP + TN + FN)
-```
 
-## 一些操作技巧整理
+## ***Kernel Baseline Boosting*** 
 
-- `KeyeVectors`读取预训练的词向量
-
-```python
-import gensim
-from gensim.models import KeyedVectors
-
-word2vec_model_path = './data/data_vec.txt' ##词向量文件的位置
-word2vec_model = KeyedVectors.load_word2vec_format(word2vec_model_path, binary=False,unicode_errors='ignore')
-word2vec_dict = {}
-for word, vector in zip(word2vec_model.vocab, word2vec_model.vectors):
-    if '.bin' not in word2vec_model_path:
-        word2vec_dict[word] = vector
-    else:
-        word2vec_dict[word] = vector /np.linalg.norm(vector) 
-for each in word2vec_dict:
-    print (each,word2vec_dict[each])
-# --------------------- 
-# 原文：https://blog.csdn.net/yangfengling1023/article/details/81705109 
-```
-- use `tqdm` to see progress bar
-```python
-import tqdm
-```
-- split句子的简洁方法
-```python
-sentences = train["question_text"].progress_apply(lambda x: x.split()).values
-
-```
-- python闭包
-```python
-def ex_func(n):
-	sum = n
-	def ins_func():
-		return sum+1
-	return ins_func
-f = ex_func(10)
-f() # == 11
-
-```
+- 优秀的kernel梳理：[*kernels*](./docs/kernels.md)
 
 
 
@@ -111,9 +51,3 @@ f() # == 11
 
 
 ### 以上持续更新...
-
-## ***Kernel Baseline Boosting*** 
-
-- 优秀的kernel梳理：[kernels](./docs/kernels.md)
-
-
