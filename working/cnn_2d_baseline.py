@@ -1,4 +1,14 @@
+# encoding: utf-8
+"""
+@author: pkusp
+@contact: pkusp@outlook.com
 
+@version: 1.0
+@file: cnn_2d_baseline.py
+@time: 2018/11/24 下午8:28
+
+这一行开始写关于本文件的说明与解释
+"""
 
 import numpy as np
 np.random.seed(42)
@@ -27,6 +37,7 @@ X_test = test["question_text"].fillna("fillna").values
 max_features = 40000
 maxlen = 70
 embed_size = 300
+
 threshold = 0.35
 
 tokenizer = text.Tokenizer(num_words=max_features)
@@ -37,21 +48,18 @@ x_train = sequence.pad_sequences(X_train, maxlen=maxlen)
 x_test = sequence.pad_sequences(X_test, maxlen=maxlen)
 
 
-def get_coefs(word, *arr):
-    return word, np.asarray(arr, dtype='float32')
 
-
+def get_coefs(word, *arr): return word, np.asarray(arr, dtype='float32')
 embeddings_index = dict(get_coefs(*o.rstrip().rsplit(' ')) for o in open(EMBEDDING_FILE))
 
 word_index = tokenizer.word_index
 nb_words = min(max_features, len(word_index))
 embedding_matrix = np.zeros((nb_words, embed_size))
 for word, i in word_index.items():
-    if i >= max_features:
-        continue
+    if i >= max_features: continue
     embedding_vector = embeddings_index.get(word)
-    if embedding_vector is not None:
-        embedding_matrix[i] = embedding_vector
+    if embedding_vector is not None: embedding_matrix[i] = embedding_vector
+
 
 
 class F1Evaluation(Callback):
@@ -107,7 +115,6 @@ def get_model():
 
 
 model = get_model()
-
 
 batch_size = 256
 epochs = 2

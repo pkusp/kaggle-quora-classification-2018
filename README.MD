@@ -113,19 +113,27 @@ odict_keys(
 
 ## 参考文献
 
-- [Multilingual Hierarchical Attention Networks for Document Classification](https://arxiv.org/abs/1707.00896v1)
+- [*understanding CNN for NLP*](http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/)
+- [*implementing a CNN for Text Classification in TensorFlow*](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)
+    - TensorFlow’s convolutional conv2d operation expects a 4-dimensional tensor with dimensions corresponding to `batch`, `width`, `height` and `channel`.
+    -  for example, `[None(batch_size), sequence_length, embedding_size, channel_size]`
+    - tensorboard bellow:
 
-- [ Show, Attend and Tell: Neural Image Caption Generation with Visual Attention](https://www.paperweekly.site/papers/812)
-- [Effective Approaches to Attention-based Neural Machine Translation](https://www.paperweekly.site/papers/806)
-- [Neural Machine Translation by Jointly Learning to Align and Translate](https://www.paperweekly.site/papers/434)
-- [Attention Is All You Need](https://www.paperweekly.site/papers/224)
-- [ Weighted Transformer Network for Machine Translation](https://www.paperweekly.site/papers/2013)
+    ![image](./docs/cnn_for_nlp_tensorboard.png)
+- [*Multilingual Hierarchical Attention Networks for Document Classification*](https://arxiv.org/abs/1707.00896v1)
+
+- [*Show, Attend and Tell: Neural Image Caption Generation with Visual Attention*](https://www.paperweekly.site/papers/812)
+- [*Effective Approaches to Attention-based Neural Machine Translation*](https://www.paperweekly.site/papers/806)
+- [*Neural Machine Translation by Jointly Learning to Align and Translate*](https://www.paperweekly.site/papers/434)
+- [*Attention Is All You Need*](https://www.paperweekly.site/papers/224)
+- [*Weighted Transformer Network for Machine Translation*](https://www.paperweekly.site/papers/2013)
 
 - [文本分类中的Attention理解](https://blog.csdn.net/fkyyly/article/details/82501126?from=singlemessage&isappinstalled=0)
 
 - [基于Attention机制的上下文分类算法在问答系统中的作用](https://www.jianshu.com/p/13bddd67cac3?from=singlemessage&isappinstalled=0)
 
 - [五种Attention模型方法及应用](https://blog.csdn.net/m0epNwstYk4/article/details/81073986?from=singlemessage&isappinstalled=0)
+
 
 
 ### 以上持续更新...
