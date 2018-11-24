@@ -26,7 +26,8 @@
 
 - 操作技巧梳理：[*tricks*](./docs/trick.md)
 - 笔记：[keras学习笔记](https://www.cnblogs.com/limitlessun/p/9296614.html#_label3)
-
+- LSTM Baselie LSTM+Attention 2DCNN 1DCNN Blending
+- Embeddings blending
 
 ## ***Kernel Baseline Boosting*** 
 
@@ -37,6 +38,10 @@
     - Different embeddings with attention
     - LSTM + CNN
     - [LSTM Attention](.https://www.kaggle.com/qqgeogor/keras-lstm-attention-glove840b-lb-0-043)
+    - [Blending with Linear Regression (9 models 0.688LB)](https://www.kaggle.com/suicaokhoailang/blending-with-linear-regression-0-688-lb)
+    - [2D CNN TextClassifier](https://www.kaggle.com/yekenot/2dcnn-textclassifier)
+    - [inceptionCNN with flip](https://www.kaggle.com/christofhenkel/inceptioncnn-with-flip)
+    - [Single RNN with 4 folds 0.692LB(good coding style)](https://www.kaggle.com/shujian/single-rnn-with-4-folds-v1-9)
 
 ## *submission*情况
 - *LSTM baseline no tune: `0.573`*
@@ -91,12 +96,20 @@ odict_keys(
 ```
 
 - 验证集还没用完
+- XGB还未使用
 
 - SEQ_LEN还需要确定
 
 - 模型融合还未使用
+    - 简单融合
+    - stacking
+        - 5-4-1采样？
 
-- XGB还未使用
+
+- Embeddings融合方法
+    - 取平均
+    - 求每个loss按权重取
+
 
 ## 参考文献
 
