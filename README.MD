@@ -97,6 +97,21 @@ odict_keys(
 
 - XGB还未使用
 
+## 参考文献
+
+- [Multilingual Hierarchical Attention Networks for Document Classification](https://arxiv.org/abs/1707.00896v1)
+
+- [ Show, Attend and Tell: Neural Image Caption Generation with Visual Attention](https://www.paperweekly.site/papers/812)
+- [Effective Approaches to Attention-based Neural Machine Translation](https://www.paperweekly.site/papers/806)
+- [Neural Machine Translation by Jointly Learning to Align and Translate](https://www.paperweekly.site/papers/434)
+- [Attention Is All You Need](https://www.paperweekly.site/papers/224)
+- [ Weighted Transformer Network for Machine Translation](https://www.paperweekly.site/papers/2013)
+
+- [文本分类中的Attention理解](https://blog.csdn.net/fkyyly/article/details/82501126?from=singlemessage&isappinstalled=0)
+
+- [基于Attention机制的上下文分类算法在问答系统中的作用](https://www.jianshu.com/p/13bddd67cac3?from=singlemessage&isappinstalled=0)
+
+- [五种Attention模型方法及应用](https://blog.csdn.net/m0epNwstYk4/article/details/81073986?from=singlemessage&isappinstalled=0)
 
 
 ### 以上持续更新...
