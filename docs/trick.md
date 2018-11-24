@@ -44,3 +44,18 @@ f() # == 11
 ```python
 
 ```
+
+- 通过F1-Score选择sigmoid阈值
+```python
+from sklearn import metrics
+# 将验证集的二维输入的text转化为三维的张量形式，取前3000
+val_vects = np.array([text_to_vec(X_text) for X_text in tqdm(val_df["question_text"][:10000])])
+val_y = np.array(val_df["target"][:10000])
+pred_glove_val_y = model.predict([val_vects], batch_size=1024, verbose=1)
+
+for thresh in np.arange(0.1, 0.501, 0.01):
+    thresh = np.round(thresh, 2)
+    print("F1 score at threshold {0} is {1}"
+          .format(thresh, metrics.f1_score(val_y, (pred_glove_val_y>thresh).astype(int))))
+
+```
