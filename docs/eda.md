@@ -23,7 +23,7 @@ train["target"].value_counts()
 
 
 > $F1-score = \frac{2*(P*RP)}{P+R}$,其中P和R分别为 precision 和 recall
-
+[F1-Score](./docs/precision-recall.jpg)
 
 ```python
 precision = TP / (TP + FP)
