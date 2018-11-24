@@ -10,6 +10,7 @@
 - [*working/main_process.py*](./main_process.py) 为数据预处理，返回 `train`和`test`清洗后的数据
 - [*working/bi-lstm_basline.py*](./bi-lstm_baseline.py)为基线模型
 
+
 -
 -
 -
@@ -38,9 +39,9 @@
     - [LSTM Attention](.https://www.kaggle.com/qqgeogor/keras-lstm-attention-glove840b-lb-0-043)
 
 ## *submission*情况
-- LSTM baseline no tune: 0.573
-- Pre-processing + LSTM Baseline no tune: 0.631
--
+- *LSTM baseline no tune: `0.573`*
+- *Pre-processing + LSTM Baseline no tune: `0.631`*
+- *LSTM + Attention + 256Dense + 0.5Dropout + SEQ_LEN(30->50) + thresh(0.5->0.35) no tune: `0.664`*
 -
 
 
