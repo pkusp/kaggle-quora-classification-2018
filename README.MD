@@ -41,7 +41,7 @@
     - [Blending with Linear Regression (9 models 0.688LB)](https://www.kaggle.com/suicaokhoailang/blending-with-linear-regression-0-688-lb)
     - [2D CNN TextClassifier](https://www.kaggle.com/yekenot/2dcnn-textclassifier)
     - [inceptionCNN with flip](https://www.kaggle.com/christofhenkel/inceptioncnn-with-flip)
-    - [Single RNN with 4 folds 0.692LB(good coding style)](https://www.kaggle.com/shujian/single-rnn-with-4-folds-v1-9)
+    - [Single RNN with 4 folds 0.692LB(good coding style)](https://www.kaggle.com/shujian/single-rnn-with-4-folds-v1-9) `5581 seconds`
 
 ## *submission*情况
 - *LSTM baseline no tune: `0.573`*
