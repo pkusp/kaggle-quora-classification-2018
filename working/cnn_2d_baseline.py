@@ -9,7 +9,7 @@
 
 这一行开始写关于本文件的说明与解释
 """
-
+# 800+ seconds
 import numpy as np
 np.random.seed(42)
 import pandas as pd
@@ -35,7 +35,7 @@ y_train = train["target"].values
 X_test = test["question_text"].fillna("fillna").values
 
 max_features = 40000
-maxlen = 70
+SEQ_LEN = 70
 embed_size = 300
 
 threshold = 0.35
@@ -44,8 +44,8 @@ tokenizer = text.Tokenizer(num_words=max_features)
 tokenizer.fit_on_texts(list(X_train) + list(X_test))
 X_train = tokenizer.texts_to_sequences(X_train)
 X_test = tokenizer.texts_to_sequences(X_test)
-x_train = sequence.pad_sequences(X_train, maxlen=maxlen)
-x_test = sequence.pad_sequences(X_test, maxlen=maxlen)
+x_train = sequence.pad_sequences(X_train, maxlen=SEQ_LEN)
+x_test = sequence.pad_sequences(X_test, maxlen=SEQ_LEN)
 
 
 
@@ -82,10 +82,10 @@ num_filters = 42
 
 
 def get_model():
-    inp = Input(shape=(maxlen,))
+    inp = Input(shape=(SEQ_LEN,))
     x = Embedding(max_features, embed_size, weights=[embedding_matrix])(inp)
     #    x = SpatialDropout1D(0.4)(x)
-    x = Reshape((maxlen, embed_size, 1))(x)
+    x = Reshape((SEQ_LEN, embed_size, 1))(x)
 
     conv_0 = Conv2D(num_filters, kernel_size=(filter_sizes[0], embed_size),
                     kernel_initializer='he_normal', activation='tanh')(x)
@@ -96,10 +96,10 @@ def get_model():
     conv_3 = Conv2D(num_filters, kernel_size=(filter_sizes[3], embed_size),
                     kernel_initializer='he_normal', activation='tanh')(x)
 
-    maxpool_0 = MaxPool2D(pool_size=(maxlen - filter_sizes[0] + 1, 1))(conv_0)
-    maxpool_1 = MaxPool2D(pool_size=(maxlen - filter_sizes[1] + 1, 1))(conv_1)
-    maxpool_2 = MaxPool2D(pool_size=(maxlen - filter_sizes[2] + 1, 1))(conv_2)
-    maxpool_3 = MaxPool2D(pool_size=(maxlen - filter_sizes[3] + 1, 1))(conv_3)
+    maxpool_0 = MaxPool2D(pool_size=(SEQ_LEN - filter_sizes[0] + 1, 1))(conv_0)
+    maxpool_1 = MaxPool2D(pool_size=(SEQ_LEN - filter_sizes[1] + 1, 1))(conv_1)
+    maxpool_2 = MaxPool2D(pool_size=(SEQ_LEN - filter_sizes[2] + 1, 1))(conv_2)
+    maxpool_3 = MaxPool2D(pool_size=(SEQ_LEN - filter_sizes[3] + 1, 1))(conv_3)
 
     z = Concatenate(axis=1)([maxpool_0, maxpool_1, maxpool_2, maxpool_3])
     z = Flatten()(z)

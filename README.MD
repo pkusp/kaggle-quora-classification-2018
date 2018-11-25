@@ -45,10 +45,10 @@
     - [Single RNN with 4 folds 0.692LB(good coding style)](https://www.kaggle.com/shujian/single-rnn-with-4-folds-v1-9) `5581 seconds`
 
 ## *submission*情况
-- *LSTM baseline no tune: `0.573`*
+- *LSTM baseline no tune: `0.573`* 2000s
 - *Pre-processing + LSTM Baseline no tune: `0.631`*
 - *LSTM + Attention + 256Dense + 0.5Dropout + SEQ_LEN(30->50) + thresh(0.5->0.35) no tune: `0.664`*
--
+- *2D CNN Baseline `0.664`* 800s
 
 
 ## 记录
@@ -140,3 +140,9 @@ odict_keys(
     - 使用`weights`传入
 
 ### 以上持续更新...
+
+
+####
+自助采样扩充数据集，有放回的采n个
+
+

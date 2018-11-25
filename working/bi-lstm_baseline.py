@@ -9,7 +9,7 @@
 
 LSTM is all you need
 """
-
+# 2000 seconds
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 import time
