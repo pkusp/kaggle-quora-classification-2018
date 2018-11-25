@@ -22,3 +22,14 @@ print("\ntext to sequence:\n",train_tk)
 max_len = 100
 X_train = pad_sequences(train_tk,max_len)
 print("\npad sequence:\n",X_train)
+
+print("\nword index:\n",tk.word_index)
+print("\nword count:\n",tk.word_counts)
+
+
+#
+embedding_matrix = np.random.normal(100, 2, (5, 10))
+print(embedding_matrix)
+
+
+

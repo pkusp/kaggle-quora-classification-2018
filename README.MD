@@ -29,6 +29,7 @@
 - LSTM Baselie LSTM+Attention 2DCNN 1DCNN Blending
 - Embeddings blending
 
+
 ## ***Kernel Baseline Boosting*** 
 
 - 优秀的kernel梳理：[*kernels*](./docs/kernels.md)
@@ -134,6 +135,8 @@ odict_keys(
 
 - [五种Attention模型方法及应用](https://blog.csdn.net/m0epNwstYk4/article/details/81073986?from=singlemessage&isappinstalled=0)
 
-
+- [Keras中Embedding层初始化的两种方式](http://www.cnblogs.com/weiyinfu/p/9873001.html)
+    - 随机初始化
+    - 使用`weights`传入
 
 ### 以上持续更新...
